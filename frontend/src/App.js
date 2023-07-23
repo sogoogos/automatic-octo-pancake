@@ -1,9 +1,12 @@
 import React, {useState} from "react"
-import Container from "@mui/material/Container";
 import Button from '@mui/material/Button';
 
+import AppHeader from "./components/AppHeader";
 import SelectUserDialog from "./components/SelectUserDialog";
 import './App.css';
+import Toolbar from "@mui/material/Toolbar";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 
 const fakeUsers = [
@@ -25,26 +28,19 @@ function App() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const loginUsername = "sogo";
   return (
     <div className="App">
-      {/*<header className="App-header">*/}
-        <Container maxwidth="sm">
-          <Button variant="contained" onClick={handleOpen}>Recognize</Button>
-        </Container>
-        <SelectUserDialog open={open} onClose={handleClose} users={fakeUsers}/>
-        {/*<img src={logo} className="App-logo" alt="logo" />*/}
-        {/*<p>*/}
-        {/*  Edit <code>src/App.js</code> and save to reload.*/}
-        {/*</p>*/}
-        {/*<a*/}
-        {/*  className="App-link"*/}
-        {/*  href="https://reactjs.org"*/}
-        {/*  target="_blank"*/}
-        {/*  rel="noopener noreferrer"*/}
-        {/*>*/}
-        {/*  Learn React*/}
-        {/*</a>*/}
-      {/*</header>*/}
+      <AppHeader username={loginUsername}/>
+      <Toolbar/>
+      <Typography>
+          Hello. You can recognize your colleagues here.
+      </Typography>
+      <Box maxwidth="sm">
+        <Button variant="contained" onClick={handleOpen}>Recognize</Button>
+      </Box>
+      <SelectUserDialog open={open} onClose={handleClose} users={fakeUsers}/>
     </div>
   );
 }
