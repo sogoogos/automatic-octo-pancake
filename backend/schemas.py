@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import ConfigDict, BaseModel
 
 
@@ -14,7 +16,7 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
-    manager_id: int
+    manager_id: Optional[int] = None
 
 
 class RecognitionBase(BaseModel):
@@ -31,5 +33,3 @@ class Recognition(RecognitionBase):
     sender_id: int
     receiver_id: int
     model_config = ConfigDict(from_attributes=True)
-
-
