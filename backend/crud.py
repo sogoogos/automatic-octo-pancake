@@ -3,11 +3,9 @@ from sqlalchemy.orm import Session
 from backend import models
 from backend import schemas
 
-# TODO: add unit tests here
-
 
 def create_user(db: Session, user: schemas.UserCreate, manager_id: int = None):
-    db_user = models.User(**user.dict(), manager_id=manager_id)
+    db_user = models.User(**user.model_dump(), manager_id=manager_id)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
@@ -29,7 +27,7 @@ def create_recognition(
         receiver_id: int
 ):
     db_recognition = models.Recognition(
-        **recognition.dict(),
+        **recognition.model_dump(),
         sender_id=sender_id,
         receiver_id=receiver_id
     )
