@@ -28,9 +28,12 @@ class User(Base):
         assert '@' in address
         return address
 
+    def __eq__(self, other):
+        return isinstance(other, User) and other.id == self.id
 
     def __repr__(self):
-        return f"User(id={self.id}, username={self.username})"
+        return f"User(id={self.id}, username={self.username}," \
+               f" email={self.email})"
 
 
 class Recognition(Base):
@@ -51,6 +54,10 @@ class Recognition(Base):
         # back_populates="received_recognitions",
         foreign_keys=[receiver_id]
     )
+
+    def __repr__(self):
+        return f"Recognition(id={self.id}, username={self.title}," \
+               f" sender_id={self.sender_id}, receiver_id={self.receiver_id})"
 
 
 
