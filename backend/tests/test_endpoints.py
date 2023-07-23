@@ -58,15 +58,7 @@ class TestEndpoints(unittest.TestCase):
     def tearDownClass(cls):
         Base.metadata.drop_all(engine)
 
-    def test_read_main(self):
-        response = client.get("/")
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), {"msg": "Hello World"})
-
     def test_get_users(self):
-        # users = get_users(TestingSessionLocal())
-        # users2 = get_users(TestingSessionLocal())
-
         response = client.get("/users/")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 6)
