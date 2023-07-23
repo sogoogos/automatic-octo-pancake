@@ -3,28 +3,28 @@ import Dialog from '@mui/material/Dialog'
 import List from "@mui/material/List";
 import Typography from '@mui/material/Typography';
 import Avatar from "@mui/material/Avatar";
-import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
-import ImageIcon from '@mui/icons-material/Image';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 
-const SelectUserDialog = ({open, users, onClose}) => {
+const SelectUserDialog = ({open, users, onClose, onClick}) => {
     return (
         <Dialog open={open} onClose={onClose} fullWidth>
             <Typography variant="h6">
                 Please select a user
             </Typography>
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+            <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
                 {users.map(user => (
-                    <ListItem>
+                    <ListItemButton onClick={() => onClick(user)}>
                         <ListItemAvatar>
                             <Avatar>
-                                <ImageIcon/>
+                                <AccountCircle/>
                             </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={user.username}/>
-                    </ListItem>
+                    </ListItemButton>
                 ))
                 }
             </List>
