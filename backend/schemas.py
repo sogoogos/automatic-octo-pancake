@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import ConfigDict, BaseModel
 
 
 class UserBase(BaseModel):
@@ -30,8 +30,6 @@ class Recognition(RecognitionBase):
     id: int
     sender_id: int
     receiver_id: int
-
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
